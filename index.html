@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Convite</title>
+  <style>
+    #content {
+      background-color: #A97B75 ;
+      background-image: radial-gradient(circle, #A97B75 , transparent 20%, #6A4039);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      text-align: center;
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      transition: background 0.5s ease;
+    }
+
+    #main {
+      width: 100%;
+      max-width: 800px;
+      color: #fafafa;
+      z-index: 1;
+    }
+
+    .buttons-container {
+      margin: auto;
+      width: 170px;
+    }
+
+    .btn {
+      font-family: monospace, sans-serif;
+      font-size: 1.5rem;
+      color: #353535;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid #353535;
+      background: #D2D7DF;
+      box-shadow: 3px 3px #353535;
+      cursor: pointer;
+      margin: 35px 0;
+      padding-left: 15px;
+      z-index: 1;
+    }
+
+    .btn#btn-yes {
+      position: fixed;
+      display: block;
+    }
+
+    .btn#btn-no {
+      position: absolute;
+    }
+
+    .btn:active {
+      box-shadow: none;
+      transform: translate(3px, 3px);
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 2;
+      display: none;
+    }
+
+    /* Modal */
+    .modal {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      font-size: 18px;
+      z-index: 3;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      display: none;
+      width: 400px;
+      height: 300px;
+      border-radius: 50px;
+      background: #e0e0e0;
+      box-shadow: 20px 20px 60px #bebebe,
+    }
+
+    .modal-body {
+      color: #333;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal-title {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .modal-body p {
+      margin: 8px;
+      margin-left: 3px;
+      display: flex;
+      align-items: center;
+    }
+
+    .modal-body p.notes {
+      text-align: center;
+      font-size: 12px;
+      padding-top: 38px;
+      white-space: nowrap;
+    }
+
+    span.obs {
+      text-align: center;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .modal-body p a {
+      text-decoration: underline;
+      color: #333
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content">
+    <div id="main">
+      <h2>Aceita sair comigo?</h2>
+      <div class="buttons-container">
+        <button class="btn" id="btn-yes" onclick="handleAccept()">SIM</button>
+        <button class="btn" id="btn-no" onclick="toDodge(this)" onmouseover="toDodge(this)">NÃO</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="modal">
+    <div class="modal-body">
+      <span class="modal-title">Sabia que iria aceitar :)</span>
+      <p>
+        <svg fill="#F24236" height="25px" width="25px" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+          viewBox="0 0 32 32" xml:space="preserve">
+          <g>
+            <circle cx="16" cy="13" r="2"/>
+            <path d="M16,3C10.5,3,6,7.5,6,13c0,8.4,9,15.5,9.4,15.8c0.2,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2C17,28.5,26,21.4,26,13
+              C26,7.5,21.5,3,16,3z M16,17c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S18.2,17,16,17z"/>
+          </g>
+        </svg>
+        <a href="https://maps.app.goo.gl/4CYLVgWdKg33iEhYA" target="_blank" style="text-decoration: none;display: flex; align-items: center;">
+          Recanto do Açaí
+          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12V6C5 5.44772 5.44772 5 6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H12M8.11111 12H12M12 12V15.8889M12 12L5 19" stroke="#464455" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </p>
+      <p>
+        <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.94028 2C7.35614 2 7.69326 2.32421 7.69326 2.72414V4.18487C8.36117 4.17241 9.10983 4.17241 9.95219 4.17241H13.9681C14.8104 4.17241 15.5591 4.17241 16.227 4.18487V2.72414C16.227 2.32421 16.5641 2 16.98 2C17.3958 2 17.733 2.32421 17.733 2.72414V4.24894C19.178 4.36022 20.1267 4.63333 20.8236 5.30359C21.5206 5.97385 21.8046 6.88616 21.9203 8.27586L22 9H2.92456H2V8.27586C2.11571 6.88616 2.3997 5.97385 3.09665 5.30359C3.79361 4.63333 4.74226 4.36022 6.1873 4.24894V2.72414C6.1873 2.32421 6.52442 2 6.94028 2Z" fill="#F24236"/>
+          <path opacity="0.5" d="M21.9995 14.0001V12.0001C21.9995 11.161 21.9963 9.66527 21.9834 9H2.00917C1.99626 9.66527 1.99953 11.161 1.99953 12.0001V14.0001C1.99953 17.7713 1.99953 19.6569 3.1711 20.8285C4.34267 22.0001 6.22829 22.0001 9.99953 22.0001H13.9995C17.7708 22.0001 19.6564 22.0001 20.828 20.8285C21.9995 19.6569 21.9995 17.7713 21.9995 14.0001Z" fill="#fafafa"/>
+          <path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17C16 16.4477 16.4477 16 17 16C17.5523 16 18 16.4477 18 17Z" fill="#1C274C"/>
+          <path d="M18 13C18 13.5523 17.5523 14 17 14C16.4477 14 16 13.5523 16 13C16 12.4477 16.4477 12 17 12C17.5523 12 18 12.4477 18 13Z" fill="#1C274C"/>
+          <path d="M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z" fill="#1C274C"/>
+          <path d="M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z" fill="#1C274C"/>
+          <path d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z" fill="#1C274C"/>
+          <path d="M8 13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13C6 12.4477 6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z" fill="#1C274C"/>
+        </svg>
+        Sábado 01/06*, 18h
+      </p>
+      <p class="notes">
+        Ao aceitar você está concordando com os <a href="https://docs.google.com/document/d/17-OKfsvK0nmHrH8ViRnnhJ0QlsX5Jn0QWzEjwMYe9WY/edit?usp=sharing" target="_blank" style="margin-left: 3px;"> Termos de Serviço</a>.
+      </p>
+      <span class="obs">*Ver cláusula 9 dos termos de serviço</span>
+    </div>
+  </div>
+
+  <script>
+    function handleAccept() {
+      document.querySelector('.modal').style.display = 'flex';
+      document.querySelector('.overlay').style.display = 'block';
+    }
+
+    function handleMoveButton(min, max) {
+      return (Math.random() * (max - min) + min) + "%";
+    }
+
+    function toDodge(btn) {
+      btn.style.position = 'absolute';
+      btn.style.bottom = handleMoveButton(10, 90);
+      btn.style.left = handleMoveButton(10, 90);
+    }
+  </script>
+</body>
+
+</html>
